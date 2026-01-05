@@ -1,27 +1,75 @@
-🌊 Catamarano Luxury Landing Page
-🚩 Obiettivo
-Realizzare una Landing Page professionale per presentare servizi di "Conscious Luxury" su catamarano.
+# Nuxt Minimal Starter
 
-🛠 Stack Tecnologica
-Frontend: Nuxt.js (Vue)
-CMS: Sanity.io
-Editor: VS Code
-Hosting: Vercel (Gratuito)
-✅ Checklist Avanzamento (Progressivo)
-Aggiorna questa lista ogni volta che completi un compito.
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
- Setup: Installazione VS Code e Git
- Giorno 1: Setup Nuxt, Concetti JS base, Componente Hero statico.
- Giorno 2: Layout Landing Page (Header, Footer, Sezioni).
- Giorno 3: Configurazione Sanity e Modello Dati "Servizio".
- Giorno 4: Connessione Nuxt-Sanity e Rendering dinamico.
- Giorno 5: Interattività, Styling finale e Pubblicazione (Deploy).
-📝 Log Sessioni (Diario di Bordo)
-Qui scriviamo cosa facciamo ogni volta per non perdere il filo.
+## Setup
 
-Sessione Iniziale - Setup
+Make sure to install dependencies:
 
-Creato progetto su VS Code.
-Creato file README.md con piano dettagliato.
-🚀 Comandi Utili
-(Li aggiorneremo man mano che li impariamo)
+```bash
+# npm
+npm install
+
+# pnpm
+pnpm install
+
+# yarn
+yarn install
+
+# bun
+bun install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
+npm run dev
+
+# pnpm
+pnpm dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
