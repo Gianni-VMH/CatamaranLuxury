@@ -1,9 +1,29 @@
 <!-- components/HeroSection.vue -->
+<script setup>
+// Importiamo la funzione per scaricare i dati
+const { data: heroData } = await useAsyncData('hero', () => {
+  // Chiediamo a Sanity: "Dammi l'oggetto di tipo 'hero' (il primo che trovi)"
+  return $fetch('/api/sanity/query', {
+    method: 'POST',
+    body: {
+      query: `*[_type == "hero"][0]` 
+    }
+  })
+})
+</script>
+
 <template>
   <section class="hero">
+    <!-- Se i dati sono arrivati, usa l'immagine, altrimenti usa un colore grigio -->
+    <div 
+      class="hero-bg"
+      :style="{ backgroundImage: heroData && heroData.image ? `url(${heroData.image.asset.url})` : 'none' }"
+    ></div>
+
     <div class="container">
-      <h1 class="title">Navigare è un Arte</h1>
-      <h2 class="subtitle">Vivi l'esperienza del Conscious Luxury nel blu del Mediterraneo</h2>
+      <!-- Usiamo il testo da Sanity se c'è, altrimenti il fisso -->
+      <h1 class="title">{{ heroData?.title || 'Navigare è un Arte' }}</h1>
+      <h2 class="subtitle">{{ heroData?.subtitle || 'Vivi l\'esperienza del Conscious Luxury' }}</h2>
       
       <div class="actions">
         <button class="btn-primary">Scopri i Servizi</button>
@@ -15,30 +35,62 @@
 
 <style scoped>
 .hero {
-  /* Sfondo leggerissimo, tipo carta avorio o mare calmo */
-  background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
-  padding: 100px 20px; /* Spazio sopra e sotto ampio */
-  text-align: center; /* Tutto centrato */
+  /* Il contenitore è relativo, ma alto 600px */
+  position: relative;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f5f9; /* Colore di riserva se l'immagine non carica */
+  text-align: center;
+  color: white; /* Il testo deve essere bianco perché sopra la foto */
+}
+
+/* Questo è il layer dell'immagine di sfondo */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover; /* Copre tutto senza deformare */
+  background-position: center;
+  z-index: 1; /* Dietro a tutto */
+}
+
+/* Maschera scura per rendere il testo leggibile sopra la foto */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.5); /* Blu scuro semi-trasparente */
 }
 
 .container {
+  position: relative;
+  z-index: 2; /* Il testo sopra l'immagine e la maschera */
   max-width: 800px;
-  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .title {
   font-size: 3.5rem;
-  color: #0f172a; /* Blu scuro */
+  color: #ffffff;
   margin-bottom: 1rem;
   line-height: 1.1;
-  font-family: Georgia, serif; /* Font serif per il tocco elegante */
+  font-family: Georgia, serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .subtitle {
   font-size: 1.25rem;
-  color: #475569; /* Grigio medio */
+  color: #e2e8f0;
   margin-bottom: 2.5rem;
   font-weight: 300;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .actions {
@@ -47,35 +99,24 @@
   justify-content: center;
 }
 
-/* Bottone Scuro (Primario) */
 .btn-primary {
-  background-color: #0f172a;
-  color: white;
+  background-color: #fff;
+  color: #0f172a; /* Testo scuro su bottone bianco */
   padding: 1rem 2rem;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s;
+  font-weight: bold;
 }
 
-.btn-primary:hover {
-  background-color: #334155;
-}
-
-/* Bottone Chiaro (Secondario) */
 .btn-secondary {
   background-color: transparent;
-  border: 1px solid #0f172a;
-  color: #0f172a;
+  border: 2px solid #ffffff;
+  color: #ffffff;
   padding: 1rem 2rem;
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s;
-}
-
-.btn-secondary:hover {
-  background-color: #f1f5f9;
 }
 </style>
