@@ -19,7 +19,7 @@ const { data: heroData } = await useAsyncData('hero', () => {
     <!-- CORREZIONE QUI: heroData.result.image -->
            <div 
       class="hero-bg"
-      :style="{ backgroundImage: heroData && heroData.result ? `url(${heroData.result.image.asset.url}?w=1600&q=80&auto=format)` : 'none' }"
+      :style="{ backgroundImage: heroData && heroData.result ? `url(${heroData.result.image.asset.url}?w=1920&q=75&auto=format)` : 'none' }"
     ></div>
 
     <div class="container">
