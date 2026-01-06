@@ -16,6 +16,8 @@ const { data: heroData } = await useAsyncData('hero', () => {
 
 <template>
   <section class="hero">
+     <!-- AGGIUNGI QUESTO QUI PER FARE DEBUG -->
+    <pre style="position: absolute; z-index: 10; background: white; color: black; top: 0; left: 0;">{{ heroData }}</pre>
     <!-- Se i dati sono arrivati, usa l'immagine, altrimenti usa un colore grigio -->
     <div 
       class="hero-bg"
