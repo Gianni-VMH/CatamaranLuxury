@@ -4,10 +4,12 @@
     
     <h2>I nostri servizi:</h2>
     
+    <!-- Cicliamo i dati ricevuti da Sanity -->
     <ul>
-           <li v-for="s in servizi" :key="s.nome" class="card">
-        <strong>{{ s.nome }}</strong> - {{ s.prezzo }}
-        <p>{{ s.descrizione }}</p>
+      <li v-for="s in servizi" :key="s._id" class="card">
+        <!-- Nota: s.title e s.price (i nomi del database) -->
+        <strong>{{ s.title }}</strong> - {{ s.price }}
+        <p>{{ s.description }}</p>
       </li>
     </ul>
 
@@ -15,45 +17,50 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import createClient from '@sanity/client'
 
-const servizi = ref([
-  { nome: "Crociera al tramonto", prezzo: "150€", descrizione: "special edition" },
-  { nome: "Tour snorkeling", prezzo: "80€", descrizione: "exclusive services" },
-  { nome: "Pranzo a bordo", prezzo: "60€", descrizione: "standard services" }
-])
+const sanityClient = createClient({
+  projectId: 'mlgxcumg',
+  dataset: 'production',
+  apiVersion: '2024-01-01',
+  useCdn: false
+})
+
+const query = "*[_type == 'service']"
+const { data: servizi } = await useAsyncData('servizi', () => sanityClient.fetch(query))
 </script>
 
-
-
 <style scoped>
-/* Stile generale della pagina */
+/* CSS delle Card */
+ul {
+  list-style-type: none; /* Rimuove i pallini della lista */
+  padding: 0;
+}
+
 div {
-  font-family: Arial, sans-serif; /* Tipo di carattere */
-  max-width: 600px;               /* Larghezza massima del contenuto */
-  margin: 0 auto;                 /* Centratura orizzontale */
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
   padding: 20px;
 }
 
-/* Stile specifico della class="card" */
 .card {
-  background-color: #f9f9f9;      /* Sfondo grigio chiaro */
-  border: 1px solid #ddd;         /* Bordo grigio */
-  border-radius: 8px;              /* Angoli arrotondati */
-  padding: 15px;                   /* Spazio interno */
-  margin-bottom: 15px;            /* Spazio sotto ogni card */
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1); /* Ombreggiatura leggera */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
 
 .card strong {
-  display: block;                 /* Porta il prezzo a capo sotto il nome */
-  font-size: 1.2em;               /* Titolo più grande */
+  display: block;
+  font-size: 1.2em;
   margin-bottom: 5px;
 }
 
 .card p {
-  color: #666;                    /* Testo descrizione grigio scuro */
+  color: #666;
   margin-top: 10px;
 }
 </style>
-
