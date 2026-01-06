@@ -20,7 +20,8 @@ const { data: heroData } = await useAsyncData('hero', () => {
     <!-- RIMUOVI IL DEBUG (<pre>). Mantiene QUESTA riga corretta: -->
     <div 
       class="hero-bg"
-      :style="{ backgroundImage: heroData && heroData.image ? `url(${heroData.image.asset.url}?w=1600&q=80&auto=format)` : 'none' }"
+      :style="{ backgroundImage: heroData && heroData.image ? `url(${heroData.image.asset.url})` : 'none' }"
+
     ></div>
 
     <div class="container">
