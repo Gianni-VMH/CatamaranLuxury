@@ -16,17 +16,16 @@ const { data: heroData } = await useAsyncData('hero', () => {
 
 <template>
   <section class="hero">
-    
-    <!-- RIMUOVI IL DEBUG (<pre>). Mantiene QUESTA riga corretta: -->
+    <!-- CORREZIONE QUI: heroData.result.image -->
     <div 
       class="hero-bg"
-      :style="{ backgroundImage: heroData && heroData.image ? `url(${heroData.image.asset.url})` : 'none' }"
-
+      :style="{ backgroundImage: heroData && heroData.result ? `url(${heroData.result.image.asset.url})` : 'none' }"
     ></div>
 
     <div class="container">
-      <h1 class="title">{{ heroData?.title || 'Navigare è un Arte' }}</h1>
-      <h2 class="subtitle">{{ heroData?.subtitle || 'Vivi l\'esperienza del Conscious Luxury' }}</h2>
+      <!-- CORREZIONE QUI: heroData.result.title -->
+      <h1 class="title">{{ heroData?.result?.title || 'Navigare è un Arte' }}</h1>
+      <h2 class="subtitle">{{ heroData?.result?.subtitle || 'Vivi l\'esperienza del Conscious Luxury' }}</h2>
       
       <div class="actions">
         <button class="btn-primary">Scopri i Servizi</button>
