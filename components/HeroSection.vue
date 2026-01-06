@@ -1,12 +1,14 @@
 <!-- components/HeroSection.vue -->
 <script setup>
-// Importiamo la funzione per scaricare i dati
+// Collegamento DIRETTO all'API esterna di Sanity
+const projectId = 'mlgxcumg'
+const dataset = 'production'
+
 const { data: heroData } = await useAsyncData('hero', () => {
-  // Chiediamo a Sanity: "Dammi l'oggetto di tipo 'hero' (il primo che trovi)"
-  return $fetch('/api/sanity/query', {
+  return $fetch(`https://${projectId}.api.sanity.io/v2021-10-21/data/query/${dataset}`, {
     method: 'POST',
     body: {
-      query: `*[_type == "hero"][0]` 
+      query: '*[_type == "hero"][0]'
     }
   })
 })
