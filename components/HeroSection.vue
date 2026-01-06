@@ -19,7 +19,7 @@ const { data: heroData } = await useAsyncData('hero', () => {
     <!-- Se i dati sono arrivati, usa l'immagine, altrimenti usa un colore grigio -->
     <div 
       class="hero-bg"
-      :style="{ backgroundImage: heroData && heroData.image ? `url(${heroData.image.asset.url})` : 'none' }"
+      :style="{ backgroundImage: heroData && heroData.image ? `url(${heroData.image.asset.url}?w=1600&q=80&auto=format)` : 'none' }"
     ></div>
 
     <div class="container">
@@ -59,6 +59,11 @@ const { data: heroData } = await useAsyncData('hero', () => {
   background-position: center;
   z-index: 1; /* Dietro a tutto */
 }
+
+
+
+
+
 
 /* Maschera scura per rendere il testo leggibile sopra la foto */
 .hero-bg::after {
