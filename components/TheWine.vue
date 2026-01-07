@@ -10,6 +10,17 @@ const { data: winesData } = await useAsyncData('wines', () => {
       query: '*[_type == "wine"] { ..., image { asset->{ url } } }'
     }
   })
+  
+  })
+
+// 2. Scarica le impostazioni (NUOVO)
+const { data: configData } = await useAsyncData('config', () => {
+  return $fetch(`https://${projectId}.api.sanity.io/v2021-10-21/data/query/${dataset}`, {
+    method: 'POST',
+    body: {
+      query: '*[_type == "siteConfig"][0]' // Prende il primo documento di tipo siteConfig
+    }
+  })
 })
 </script>
 
@@ -17,9 +28,10 @@ const { data: winesData } = await useAsyncData('wines', () => {
   <section class="wine-section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">La Cantina Galleggiante</h2>
-        <p class="section-subtitle">Una selezione di eccellenze territoriali da accompagnare con il suono del mare.</p>
-      </div>
+          <!-- Usa i dati di Sanity al posto del testo fisso -->
+        <h2 class="section-title">{{ configData?.result?.wine_section_title || 'La Cantina Galleggiante' }}</h2>
+        <p class="section-subtitle">{{ configData?.result?.wine_section_subtitle || 'Una selezione di eccellenze...' }}</p>
+    </div>
 
       <div class="wines-grid">
         <div v-for="wine in winesData?.result" :key="wine._id" class="wine-card">
