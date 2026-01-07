@@ -27,9 +27,13 @@ const { data: heroData } = await useAsyncData('hero', () => {
       <h1 class="title">{{ heroData?.result?.title || 'Navigare è un Arte' }}</h1>
       <h2 class="subtitle">{{ heroData?.result?.subtitle || 'Vivi l\'esperienza del Conscious Luxury' }}</h2>
       
+      <!-- Vecchio codice SOSTITUITO CON VARIABILI 👇 -->
       <div class="actions">
-        <button class="btn-primary">Scopri i Servizi</button>
-        <button class="btn-secondary">Contattaci</button>
+        <button class="btn-primary">{{ heroData?.result?.cta_primary || 'Scopri i Servizi' }}</button>
+        <button class="btn-secondary">{{ heroData?.result?.cta_secondary || 'Contattaci' }}</button>
+      </div>
+
+
       </div>
     </div>
   </section>

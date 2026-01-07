@@ -22,5 +22,18 @@ export default {
         hotspot: true, // Permette di riquadrare l'immagine
       },
     },
+ // AGGIUNGI QUESTI DUE CAMPI NUOVI 👇
+    {
+      name: 'cta_primary',
+      title: 'Testo Bottone Primario (Blu)',
+      type: 'string',
+      initialValue: 'Scopri i Servizi',
+    },
+    {
+      name: 'cta_secondary',
+      title: 'Testo Bottone Secondario (Bianco)',
+      type: 'string',
+      initialValue: 'Contattaci',
+    },
   ],
 }
