@@ -16,17 +16,27 @@ const { data: heroData } = await useAsyncData('hero', () => {
 
 <template>
   <section class="hero">
+    
+    
+    <!-- AGGIUNGI QUESTO BLOCCO DI DEBUG 👇 -->
+    <pre style="position: fixed; top:0; left:0; background: white; color: black; z-index: 9999; padding: 20px; overflow: auto; max-height: 200px; border: 2px solid red;">
+      {{ heroData }}
+    </pre>
+    <!-- FINE DEBUG 👆 -->
+
+
     <!-- CORREZIONE QUI: heroData.result.image -->
            <div 
       class="hero-bg"
       :style="{ backgroundImage: heroData && heroData.result ? `url(${heroData.result.image.asset.url}?w=1920&q=75&auto=format)` : 'none' }"
     ></div>
 
-    <div class="container">
+   <div class="container">
       <!-- CORREZIONE QUI: heroData.result.title -->
       <h1 class="title">{{ heroData?.result?.title || 'Navigare è un Arte' }}</h1>
       <h2 class="subtitle">{{ heroData?.result?.subtitle || 'Vivi l\'esperienza del Conscious Luxury' }}</h2>
-      
+      </div>
+
       <!-- Vecchio codice SOSTITUITO CON VARIABILI 👇 -->
       <div class="actions">
         <button class="btn-primary">{{ heroData?.result?.cta_primary || 'Scopri i Servizi' }}</button>
@@ -34,7 +44,7 @@ const { data: heroData } = await useAsyncData('hero', () => {
       </div>
 
 
-      </div>
+      
     </div>
   </section>
 </template>
