@@ -1,6 +1,5 @@
 <!-- components/HeroSection.vue -->
 <script setup>
-// Collegamento DIRETTO all'API esterna di Sanity
 const projectId = 'mlgxcumg'
 const dataset = 'production'
 
@@ -8,7 +7,6 @@ const { data: heroData } = await useAsyncData('hero', () => {
   return $fetch(`https://${projectId}.api.sanity.io/v2021-10-21/data/query/${dataset}`, {
     method: 'POST',
     body: {
-     // query: '*[_type == "hero"][0] { ..., image { asset->{ url } } }'
       query: '*[_type == "hero"][0] { ..., image { asset->{ url } }, cta_primary, cta_secondary }'
     }
   })
@@ -17,70 +15,52 @@ const { data: heroData } = await useAsyncData('hero', () => {
 
 <template>
   <section class="hero">
-    
-    
-    <!-- AGGIUNGI QUESTO BLOCCO DI DEBUG 👇 -->
-    <pre style="position: fixed; top:0; left:0; background: white; color: black; z-index: 9999; padding: 20px; overflow: auto; max-height: 200px; border: 2px solid red;">
-      {{ heroData }}
-    </pre>
-    <!-- FINE DEBUG 👆 -->
-
-
-    <!-- CORREZIONE QUI: heroData.result.image -->
-           <div 
+    <!-- Layer Sfondo -->
+    <div 
       class="hero-bg"
-      :style="{ backgroundImage: heroData && heroData.result ? `url(${heroData.result.image.asset.url}?w=1920&q=75&auto=format)` : 'none' }"
+      :style="{ backgroundImage: heroData && heroData.result ? `url(${heroData.result.image.asset.url})` : 'none' }"
     ></div>
 
-   <div class="container">
-      <!-- CORREZIONE QUI: heroData.result.title -->
+    <!-- Contenitore Principale -->
+    <div class="container">
+      
+      <!-- Titoli -->
       <h1 class="title">{{ heroData?.result?.title || 'Navigare è un Arte' }}</h1>
       <h2 class="subtitle">{{ heroData?.result?.subtitle || 'Vivi l\'esperienza del Conscious Luxury' }}</h2>
-      </div>
-
-      <!-- Vecchio codice SOSTITUITO CON VARIABILI 👇 -->
+      
+      <!-- Bottoni -->
       <div class="actions">
         <button class="btn-primary">{{ heroData?.result?.cta_primary || 'Scopri i Servizi' }}</button>
         <button class="btn-secondary">{{ heroData?.result?.cta_secondary || 'Contattaci' }}</button>
       </div>
 
-
-      
     </div>
   </section>
 </template>
 
 <style scoped>
 .hero {
-  /* Il contenitore è relativo, ma alto 600px */
   position: relative;
   height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f1f5f9; /* Colore di riserva se l'immagine non carica */
+  background-color: #f1f5f9; 
   text-align: center;
-  color: white; /* Il testo deve essere bianco perché sopra la foto */
+  color: white;
 }
 
-/* Questo è il layer dell'immagine di sfondo */
 .hero-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover; /* Copre tutto senza deformare */
+  background-size: cover;
   background-position: center;
-  z-index: 1; /* Dietro a tutto */
+  z-index: 1;
 }
 
-
-
-
-
-
-/* Maschera scura per rendere il testo leggibile sopra la foto */
 .hero-bg::after {
   content: '';
   position: absolute;
@@ -88,18 +68,18 @@ const { data: heroData } = await useAsyncData('hero', () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(15, 23, 42, 0.5); /* Blu scuro semi-trasparente */
+  background: rgba(15, 23, 42, 0.5);
 }
 
 .container {
   position: relative;
-  z-index: 2; /* Il testo sopra l'immagine e la maschera */
+  z-index: 2;
   max-width: 800px;
   padding: 0 20px;
 }
 
 .title {
-  font-size: 3.5rem;
+  font-size:3.5rem;
   color: #ffffff;
   margin-bottom: 1rem;
   line-height: 1.1;
@@ -123,7 +103,7 @@ const { data: heroData } = await useAsyncData('hero', () => {
 
 .btn-primary {
   background-color: #fff;
-  color: #0f172a; /* Testo scuro su bottone bianco */
+  color: #0f172a;
   padding: 1rem 2rem;
   border: none;
   border-radius: 4px;
