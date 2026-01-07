@@ -7,7 +7,7 @@ import MyHeader from '~/components/MyHeader.vue'
 <template>
   <div>
     <MyHeader />
-
+    <TheWines />
     <!-- NUOVO: Inseriamo la Hero Section qui -->
     <HeroSection />
 
@@ -26,6 +26,28 @@ import MyHeader from '~/components/MyHeader.vue'
 </template>
 
 <style>
+<style>
+:root {
+  /* Palette Catamarano Luxury */
+  
+  /* 1. Ocean Navy (Mare profondo, Testo, Footer) */
+  --color-ocean: #0f172a;
+  
+  /* 2. Cork Tan (Sughero caldo, Accenti, Bordi) */
+  --color-cork: #d2b48c; 
+  
+  /* 3. Golden Sand (Sfondo chiaro, rilassante) */
+  --color-sand: #f8fafc;
+
+  /* 4. Sunset Gold (Dettagli preziosi) */
+  --color-gold: #c5a059;
+
+  /* Font (Sarà importante dopo, ma prepariamolo) */
+  --font-serif: 'Georgia', serif;
+  --font-sans: 'Arial', sans-serif;
+}
+
+
 /* Qui puoi mettere un po' di padding per spaziare le sezioni */
 .services-section {
   max-width: 1000px;
