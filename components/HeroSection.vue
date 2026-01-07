@@ -8,7 +8,8 @@ const { data: heroData } = await useAsyncData('hero', () => {
   return $fetch(`https://${projectId}.api.sanity.io/v2021-10-21/data/query/${dataset}`, {
     method: 'POST',
     body: {
-      query: '*[_type == "hero"][0] { ..., image { asset->{ url } } }'
+     // query: '*[_type == "hero"][0] { ..., image { asset->{ url } } }'
+      query: '*[_type == "hero"][0] { ..., image { asset->{ url } }, cta_primary, cta_secondary }'
     }
   })
 })
