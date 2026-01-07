@@ -6,10 +6,13 @@ import MyHeader from '~/components/MyHeader.vue'
 
 <template>
   <div>
+    <!-- NUOVA SEZIONE HEADER -->
     <MyHeader />
-    <TheWines />
     <!-- NUOVO: Inseriamo la Hero Section qui -->
     <HeroSection />
+
+    <!-- NUOVA SEZIONE VINI -->
+    <TheWine />
 
     <!-- Sezione Servizi (quella che avevi prima) -->
     <div class="services-section">
@@ -25,7 +28,6 @@ import MyHeader from '~/components/MyHeader.vue'
   </div>
 </template>
 
-<style>
 <style>
 :root {
   /* Palette Catamarano Luxury */
