@@ -29,28 +29,22 @@ import MyHeader from '~/components/MyHeader.vue'
 </template>
 
 <style>
+/* 1. Importiamo i font da Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
 :root {
   /* Palette Catamarano Luxury */
-  
-  /* 1. Ocean Navy (Mare profondo, Testo, Footer) */
   --color-ocean: #0f172a;
-  
-  /* 2. Cork Tan (Sughero caldo, Accenti, Bordi) */
   --color-cork: #d2b48c; 
-  
-  /* 3. Golden Sand (Sfondo chiaro, rilassante) */
   --color-sand: #f8fafc;
-
-  /* 4. Sunset Gold (Dettagli preziosi) */
   --color-gold: #c5a059;
 
-  /* Font (Sarà importante dopo, ma prepariamolo) */
-  --font-serif: 'Georgia', serif;
-  --font-sans: 'Arial', sans-serif;
+  /* 2. Applichiamo i nuovi Font alle Variabili */
+  --font-serif: 'Playfair Display', serif;      /* Sostituisce Georgia */
+  --font-sans: 'Inter', sans-serif;            /* Sostituisce Arial */
 }
 
-
-/* Qui puoi mettere un po' di padding per spaziare le sezioni */
+/* Stile per la sezione servizi (manteniamo quello che c'era) */
 .services-section {
   max-width: 1000px;
   margin: 50px auto;
