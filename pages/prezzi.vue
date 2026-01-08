@@ -3,7 +3,7 @@
 const inputPass = ref('')
 const isAuthorized = useCookie('catamaran_auth')
 
-// Chiediamo al server (server/api/login.post.ts)
+// Funzione Login aggiornata
 const login = async () => {
   try {
     const response = await $fetch('/api/login', {
@@ -13,11 +13,15 @@ const login = async () => {
 
     if (response.success) {
       isAuthorized.value = true
+    } else {
+      // QUI VISUALIZZIAMO L'ERRORE DI DEBUG
+      alert("ERRORE:\n" + response.debug)
+      inputPass.value = ''
     }
   } catch (error) {
-    alert('Password errata')
+    alert("Errore di connessione col server")
     inputPass.value = ''
-  }
+  }  
 }
 </script>
 
