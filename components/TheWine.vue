@@ -18,7 +18,7 @@ const { data: configData } = await useAsyncData('config', () => {
   return $fetch(`https://${projectId}.api.sanity.io/v2021-10-21/data/query/${dataset}`, {
     method: 'POST',
     body: {
-      query: '*[_type == "siteConfig"][0]' // Prende il primo documento di tipo siteConfig
+      query: '*[_type == "wine"] | order(order asc) { ..., image { asset->{ url } } }'
     }
   })
 })

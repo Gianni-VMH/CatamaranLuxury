@@ -4,7 +4,7 @@ const { data: serviziData } = await useAsyncData('services', () => {
   return $fetch('https://mlgxcumg.api.sanity.io/v2021-10-21/data/query/production', {
     method: 'POST',
     body: {
-      query: '*[_type == "service"] { ..., image { asset->{ url } } }'
+      query: '*[_type == "service"] | order(order asc) { ..., image { asset->{ url } } }'
     }
   })
 })
