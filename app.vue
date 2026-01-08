@@ -8,8 +8,9 @@ import MyHeader from '~/components/MyHeader.vue'
   <div>
     <MyHeader />
     <HeroSection />
-    <TheWine />
     <TheServices />
+    <TheWine />
+
   </div>
 </template>
 
