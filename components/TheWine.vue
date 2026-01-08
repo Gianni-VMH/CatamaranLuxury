@@ -7,7 +7,9 @@ const { data: winesData } = await useAsyncData('winesv-2', () => {
   return $fetch(`https://${projectId}.api.sanity.io/v2021-10-21/data/query/${dataset}`, {
     method: 'POST',
     body: {
-      query: '*[_type == "wine"] { ..., image { asset->{ url } } }'
+     //!  query: '*[_type == "wine"] { ..., image { asset->{ url } } }' 
+     // riga commentata perche oggetto di debug con quella successiva//
+      query: '*[_type == "wine"] | order(order asc, name asc) { ..., image { asset->{ url } } }'
     }
   })
   
