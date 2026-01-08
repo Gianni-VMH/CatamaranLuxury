@@ -1,7 +1,22 @@
-<!-- app.vue -->
+
 <script setup>
-// Manteniamo l'import pulito che ha funzionato
 import MyHeader from '~/components/MyHeader.vue'
+
+// Codice forzatutto per scorrimento liscio
+onMounted(() => {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault()
+      const targetId = this.getAttribute('href').substring(1)
+      const target = document.getElementById(targetId)
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth'
+        })
+      }
+    })
+  })
+})
 </script>
 
 <template>
@@ -39,12 +54,6 @@ import MyHeader from '~/components/MyHeader.vue'
   /* 2. Applichiamo i nuovi Font alle Variabili */
   --font-serif: 'Playfair Display', serif;      /* Sostituisce Georgia */
   --font-sans: 'Inter', sans-serif;            /* Sostituisce Arial */
-
-/* Scorrimento liscio per tutto il sito */
-html {
-  scroll-behavior: smooth;
-
-}
 }
 
 /* Stile Footer */
