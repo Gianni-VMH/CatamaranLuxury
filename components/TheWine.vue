@@ -3,7 +3,7 @@
 const projectId = 'mlgxcumg'
 const dataset = 'production'
 
-const { data: winesData } = await useAsyncData('wines', () => {
+const { data: winesData } = await useAsyncData('winesv-2', () => {
   return $fetch(`https://${projectId}.api.sanity.io/v2021-10-21/data/query/${dataset}`, {
     method: 'POST',
     body: {
