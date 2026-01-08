@@ -25,6 +25,7 @@ onMounted(() => {
     <HeroSection />
     <TheServices />
     <TheWine />
+    <NuxtPage />
    <!-- FOOTER (Nuovo Chi Siamo) -->
     <footer id="footer" class="site-footer">
       <div class="container">
