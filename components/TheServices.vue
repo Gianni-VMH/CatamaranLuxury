@@ -11,7 +11,7 @@ const { data: serviziData } = await useAsyncData('services', () => {
 </script>
 
 <template>
-  <section class="services-section">
+ <section id="servizi" class="services-section">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Esperienze a Bordo</h2>

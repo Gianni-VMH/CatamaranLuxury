@@ -27,7 +27,7 @@ const { data: configData } = await useAsyncData('config', () => {
 </script>
 
 <template>
-  <section class="wine-section">
+  <section id="wines" class="wine-section">  
     <div class="container">
       <div class="section-header">
           <!-- Usa i dati di Sanity al posto del testo fisso -->

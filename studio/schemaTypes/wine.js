@@ -4,6 +4,12 @@ export default {
   title: 'Vino (Cantina)',
   type: 'document',
   fields: [
+      {
+      name: 'order',
+      title: 'Ordine di apparizione',
+      type: 'number',
+      description: 'Inserisci un numero. Più basso è il numero, prima appare (es. 10, 20, 30).',
+    },
     {
       name: 'name',
       title: 'Nome del Vino',
@@ -31,12 +37,6 @@ export default {
       options: {
         hotspot: true,
       },
-    },
-    {
-      name: 'order',
-      title: 'Ordine di apparizione',
-      type: 'number',
-      description: 'Inserisci un numero. Più basso è il numero, prima appare (es. 10, 20, 30).',
     },
 
   ],

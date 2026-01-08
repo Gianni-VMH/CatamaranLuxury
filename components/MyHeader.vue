@@ -6,12 +6,16 @@
       <!-- Qui puntiamo al Logo. Dato che il server è nuovo, l'auto-import dovrebbe funzionare -->
       <TheLogo />
 
-      <nav class="nav-menu">
+       <nav class="nav-menu">
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Servizi</a></li>
-          <li><a href="#">Chi Siamo</a></li>
-          <li><a href="#" class="btn-prenota">Prenota Ora</a></li>
+          <!-- Home: Torna in cima -->
+          <li><a href="/">Home</a></li>
+          <!-- Servizi: Scorre alla sezione Servizi -->
+          <li><a href="#servizi">Servizi</a></li>
+          <!-- Chi Siamo: Scorre in fondo (al footer se metti un ID, o usiamo #wines per ora) -->
+          <li><a href="#wines">Chi Siamo</a></li>
+          <!-- Prenota: Apre l'email (Il modo elegante per i siti di lusso senza form) -->
+          <li><a href="mailto:info@catamaranluxury.com?subject=Richiesta%20Catamarano" class="btn-prenota">Prenota</a></li>
         </ul>
       </nav>
     </div>

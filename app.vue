@@ -28,6 +28,11 @@ import MyHeader from '~/components/MyHeader.vue'
   /* 2. Applichiamo i nuovi Font alle Variabili */
   --font-serif: 'Playfair Display', serif;      /* Sostituisce Georgia */
   --font-sans: 'Inter', sans-serif;            /* Sostituisce Arial */
+
+/* Scorrimento liscio per tutto il sito */
+html {
+  scroll-behavior: smooth;
+
 }
 
 </style>
