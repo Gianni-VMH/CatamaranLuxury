@@ -3,7 +3,7 @@
 const inputPass = ref('')
 const isAuthorized = useCookie('catamaran_auth')
 
-// Chiediamo al server (login.post.ts)
+// Chiediamo al server (server/api/login.post.ts)
 const login = async () => {
   try {
     const response = await $fetch('/api/login', {
@@ -43,7 +43,7 @@ const login = async () => {
       <h1>Listino Prezzi & Up-Selling</h1>
       <p>Ecco i dettagli e i costi dei servizi speciali (Chef, Massaggi, etc.).</p>
 
-      <!-- ESEMPIO DI LISTINO (Poi lo renderemo dinamico) -->
+      <!-- ESEMPIO DI LISTINO -->
       <div class="price-list">
         <div class="price-item">
           <strong>Chef a Bordo (Cena 5 Portate)</strong>
@@ -66,9 +66,10 @@ const login = async () => {
 <style scoped>
 .content {
   max-width: 800px;
-  margin: 100px auto; /* Margin alto per scrollare l'header */
+  margin: 100px auto;
   padding: 0 20px;
   text-align: center;
+  min-height: 60vh;
 }
 
 /* Stile Login */
@@ -77,6 +78,7 @@ const login = async () => {
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border: 1px solid #e2e8f0;
 }
 
 .pass-input {
@@ -95,6 +97,7 @@ const login = async () => {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: 600;
 }
 
 /* Stile Prezzi */

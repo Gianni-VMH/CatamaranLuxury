@@ -1,8 +1,8 @@
-
+<!-- app.vue -->
 <script setup>
 import MyHeader from '~/components/MyHeader.vue'
 
-// Codice forzatutto per scorrimento liscio
+// Scorrimento Liscio (JavaScript forzato)
 onMounted(() => {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -16,17 +16,20 @@ onMounted(() => {
       }
     })
   })
-}) 
+})
 </script>
 
 <template>
   <div>
+    <!-- Header (Visibile sempre) -->
     <MyHeader />
-    <HeroSection />
-    <TheServices />
-    <TheWine />
+
+    <!-- 👇 QUI NUXT CAMBIA AUTOMATICAMENTE IL CONTENUTO 👇 -->
+    <!-- Se vai su / carica index.vue -->
+    <!-- Se vai su /prezzi carica prezzi.vue -->
     <NuxtPage />
-   <!-- FOOTER (Nuovo Chi Siamo) -->
+
+    <!-- FOOTER (Visibile sempre) -->
     <footer id="footer" class="site-footer">
       <div class="container">
         <div class="footer-content">
@@ -38,38 +41,51 @@ onMounted(() => {
         </div>
       </div>
     </footer>
+
   </div>
 </template>
 
 <style>
-/* 1. Importiamo i font da Google Fonts */
+/* FONT GLOBALI (Toglieremo Google Fonts se non ti piacciono) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-  /* Palette Catamarano Luxury */
+  /* Palette Colori */
   --color-ocean: #0f172a;
   --color-cork: #d2b48c; 
   --color-sand: #f8fafc;
   --color-gold: #c5a059;
 
-  /* 2. Applichiamo i nuovi Font alle Variabili */
-  --font-serif: 'Playfair Display', serif;      /* Sostituisce Georgia */
-  --font-sans: 'Inter', sans-serif;            /* Sostituisce Arial */
+  /* Font (Se vuoi usare Georgia/Arial, cambia qui) */
+  --font-serif: 'Playfair Display', serif;      
+  --font-sans: 'Inter', sans-serif;            
+}
+
+/* Scorrimento (Il JS farà il lavoro pesante, ma lasciamo questo come fallback) */
+html, body {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
 }
 
 /* Stile Footer */
 .site-footer {
-  background-color: var(--color-ocean); /* Blu Navy */
+  background-color: var(--color-ocean);
   color: white;
   padding: 60px 20px 40px;
-  margin-top: auto; /* Spinge il footer in fondo */
+  margin-top: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .footer-content h3 {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   margin-bottom: 10px;
-  color: var(--color-cork); /* Titolo Sughero */
+  color: var(--color-cork);
 }
 
 .footer-copyright {
@@ -80,5 +96,4 @@ onMounted(() => {
   font-size: 0.85rem;
   color: rgba(255,255,255,0.6);
 }
-
 </style>
