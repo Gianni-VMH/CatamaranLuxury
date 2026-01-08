@@ -11,13 +11,13 @@ const login = async () => {
       body: { password: inputPass.value }
     })
 
-    if (response.success) {
-      isAuthorized.value = true
-    } else {
-      // QUI VISUALIZZIAMO L'ERRORE DI DEBUG
-      alert("ERRORE:\n" + response.debug)
-      inputPass.value = ''
-    }
+if (response.success) {
+  isAuthorized.value = true
+} else {
+  alert('Password errata')
+  inputPass.value = ''
+}
+
   } catch (error) {
     alert("Errore di connessione col server")
     inputPass.value = ''
