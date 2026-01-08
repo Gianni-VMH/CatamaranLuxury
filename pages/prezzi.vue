@@ -1,9 +1,16 @@
 <!-- pages/prezzi.vue -->
 <script setup>
-const inputPass = ref('')
-const isAuthorized = useCookie('catamaran_auth')
+import { navigateTo } from '#app' // Importiamo la funzione per spostarci
 
-// Funzione Login aggiornata
+// Gestione Cookie
+const cookie = useCookie('catamaran_auth')
+
+// Calcoliamo lo stato di autorizzazione in modo reattivo
+// Se il cookie esiste, siamo autorizzati.
+const isAuthorized = computed(() => !!cookie.value)
+
+const inputPass = ref('')
+
 const login = async () => {
   try {
     const response = await $fetch('/api/login', {
@@ -11,24 +18,20 @@ const login = async () => {
       body: { password: inputPass.value }
     })
 
-if (response.success) {
-  isAuthorized.value = true
-} else {
-  alert('Password errata')
-  inputPass.value = ''
-}
-
+    if (response.success) {
+      cookie.value = true // Salviamo nel cookie
+      isAuthorized.value = true // Aggiorniamo lo stato
+    }
   } catch (error) {
-    alert("Errore di connessione col server")
+    alert('Password errata')
     inputPass.value = ''
-  }  
-// FUNZIONE PER USCIRE
-const cookie = useCookie('catamaran_auth')
-
-const logout = () => {
-  cookie.value = null  // Cancella il cookie
-  alert('Ti sei disconnesso')
+  }
 }
+
+// FUNZIONE DI USCITA AGGIORNATA
+const logout = async () => {
+  cookie.value = null // 1. Cancella il cookie
+  await navigateTo('/') // 2. Riporta alla Home page
 }
 </script>
 
@@ -50,11 +53,15 @@ const logout = () => {
     </div>
 
     <!-- CASO B: UTENTE AUTORIZZATO -->
-    <div v-else class="secret-content"> 
-        <!-- Pulsante LOGGA FUORI -->
-        <button @click="logout" class="btn-logout">Logga Fuori</button>
-      <h1>Listino Prezzi & Up-Selling</h1>
-      <p>Ecco i dettagli e i costi dei servizi speciali (Chef, Massaggi, etc.).</p>
+    <div v-else class="secret-content">
+      
+      <!-- Pulsante LOGGA FUORI (In alto a destra) -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h2 style="margin:0;">Listino Prezzi</h2>
+        <button @click="logout" class="btn-logout">Esci</button>
+      </div>
+
+      <p>Ecco i dettagli e i costi dei servizi speciali.</p>
 
       <!-- ESEMPIO DI LISTINO -->
       <div class="price-list">
@@ -128,5 +135,21 @@ const logout = () => {
   justify-content: space-between;
   border: 1px solid #e2e8f0;
   font-size: 1.1rem;
+}
+
+/* Stile Logout */
+.btn-logout {
+  background-color: transparent;
+  border: 1px solid #ef4444; /* Rosso chiaro */
+  color: #ef4444;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-logout:hover {
+  background-color: #ef4444;
+  color: white;
 }
 </style>
