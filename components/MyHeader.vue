@@ -13,7 +13,7 @@
           <!-- Servizi: Scorre alla sezione Servizi -->
           <li><a href="#servizi">Servizi</a></li>
           <!-- Chi Siamo: Scorre in fondo (al footer se metti un ID, o usiamo #wines per ora) -->
-          <li><a href="#wines">Chi Siamo</a></li>
+          <li><a href="#footer">Chi Siamo</a></li>
           <!-- Prenota: Apre l'email (Il modo elegante per i siti di lusso senza form) -->
           <li><a href="mailto:info@catamaranluxury.com?subject=Richiesta%20Catamarano" class="btn-prenota">Prenota</a></li>
         </ul>
