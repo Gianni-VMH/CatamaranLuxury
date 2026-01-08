@@ -6,25 +6,10 @@ import MyHeader from '~/components/MyHeader.vue'
 
 <template>
   <div>
-    <!-- NUOVA SEZIONE HEADER -->
     <MyHeader />
-    <!-- NUOVO: Inseriamo la Hero Section qui -->
     <HeroSection />
-
-    <!-- NUOVA SEZIONE VINI -->
     <TheWine />
-
-    <!-- Sezione Servizi (quella che avevi prima) -->
-    <div class="services-section">
-      <h2>I nostri servizi esclusivi:</h2>
-      <ul>
-        <li v-for="s in servizi" :key="s._id" class="card">
-          <strong>{{ s.title }}</strong> - {{ s.price }}
-          <p>{{ s.description }}</p>
-        </li>
-      </ul>
-    </div>
-
+    <TheServices />
   </div>
 </template>
 
@@ -44,10 +29,4 @@ import MyHeader from '~/components/MyHeader.vue'
   --font-sans: 'Inter', sans-serif;            /* Sostituisce Arial */
 }
 
-/* Stile per la sezione servizi (manteniamo quello che c'era) */
-.services-section {
-  max-width: 1000px;
-  margin: 50px auto;
-  padding: 0 20px;
-}
 </style>
