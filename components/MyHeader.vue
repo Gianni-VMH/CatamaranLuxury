@@ -16,9 +16,21 @@
           <li><a href="#footer">Chi Siamo</a></li>
           <!-- Prenota: Apre l'email (Il modo elegante per i siti di lusso senza form) -->
           <li><a href="mailto:info@catamaranluxury.com?subject=Richiesta%20Catamarano" class="btn-prenota">Prenota</a></li>
+          <!-- Area Riservata -->
+          <li><a href="/prezzi" class="btn-reserved">Area Riservata</a></li>
         </ul>
+
       </nav>
+
+      <!-- Bottone Area Riservata FUORI dalla lista (a destra) 
+      <a href="/prezzi" class="btn-reserved">Area Riservata</a> -->
+      <!-- Il codice precendete serve per spostare il bottote logout a desta. Ilcodice sotto che è attivo prima di <ul> va spento o cancellato
+         -- Area Riservata --
+          <li><a href="/prezzi" class="btn-reserved">Area Riservata</a></li>
+      -->
+
     </div>
+
   </header>
 </template>
 

@@ -22,6 +22,13 @@ if (response.success) {
     alert("Errore di connessione col server")
     inputPass.value = ''
   }  
+// FUNZIONE PER USCIRE
+const cookie = useCookie('catamaran_auth')
+
+const logout = () => {
+  cookie.value = null  // Cancella il cookie
+  alert('Ti sei disconnesso')
+}
 }
 </script>
 
@@ -43,7 +50,9 @@ if (response.success) {
     </div>
 
     <!-- CASO B: UTENTE AUTORIZZATO -->
-    <div v-else class="secret-content">
+    <div v-else class="secret-content"> 
+        <!-- Pulsante LOGGA FUORI -->
+        <button @click="logout" class="btn-logout">Logga Fuori</button>
       <h1>Listino Prezzi & Up-Selling</h1>
       <p>Ecco i dettagli e i costi dei servizi speciali (Chef, Massaggi, etc.).</p>
 
