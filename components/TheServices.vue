@@ -1,11 +1,10 @@
 <!-- components/TheServices.vue -->
 <script setup>
-// Ricollegamento ai dati (simile a prima)
 const { data: serviziData } = await useAsyncData('services', () => {
   return $fetch('https://mlgxcumg.api.sanity.io/v2021-10-21/data/query/production', {
     method: 'POST',
     body: {
-      query: '*[_type == "service"]'
+      query: '*[_type == "service"] { ..., image { asset->{ url } } }'
     }
   })
 })
@@ -14,39 +13,40 @@ const { data: serviziData } = await useAsyncData('services', () => {
 <template>
   <section class="services-section">
     <div class="container">
-      
-      <!-- Header Sezione -->
       <div class="section-header">
         <h2 class="section-title">Esperienze a Bordo</h2>
         <p class="section-subtitle">Il lusso di vivere il mare in modo consapevole.</p>
       </div>
 
-      <!-- Griglia Servizi -->
       <div class="services-grid">
         <div v-for="s in serviziData?.result" :key="s._id" class="service-card">
           
-          <!-- Testo -->
+          <div class="service-image-box">
+            <img 
+              v-if="s.image" 
+              :src="`${s.image.asset.url}?w=800&q=80`" 
+              :alt="s.title" 
+              class="service-img"
+            >
+          </div>
+
           <div class="service-content">
-            <!-- Titolo con accento color sughero -->
             <h3 class="service-title">
               <span class="dot"></span>
               {{ s.title }}
             </h3>
-            
-            <!-- Descrizione pulita -->
             <p class="service-desc">{{ s.description }}</p>
           </div>
+
         </div>
       </div>
-
     </div>
   </section>
 </template>
 
 <style scoped>
-/* Container Principale */
 .services-section {
-  background-color: white; /* Bianco per contrasto con la sezione vini sopra */
+  background-color: white;
   padding: 100px 20px;
   color: var(--color-ocean);
 }
@@ -56,7 +56,6 @@ const { data: serviziData } = await useAsyncData('services', () => {
   margin: 0 auto;
 }
 
-/* Header */
 .section-header {
   text-align: center;
   margin-bottom: 80px;
@@ -77,32 +76,53 @@ const { data: serviziData } = await useAsyncData('services', () => {
   font-size: 0.9rem;
 }
 
-/* Griglia (3 colonne su PC, 1 su cellulare) */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
 }
 
-/* Card Singola */
 .service-card {
-  background: #f8fafc; /* Un grigio chiarissimo appena accennato */
+  background: #f8fafc;
   border: 1px solid #e2e8f0;
-  padding: 40px 30px;
-  border-radius: 8px; /* Angoli dolci */
+  border-radius: 8px;
+  overflow: hidden;
   transition: all 0.3s ease;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-image-box {
+  height: 250px;
   overflow: hidden;
 }
 
-/* Effetto Hover elegante */
+.service-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover .service-img {
+  transform: scale(1.05);
+}
+
 .service-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  border-color: var(--color-cork); /* Bordo sughero al passaggio */
+  border-color: var(--color-cork);
 }
 
-/* Dettaglio decorativo (Pallino) */
+.service-content {
+  padding: 30px;
+  text-align: left;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .dot {
   display: inline-block;
   width: 8px;
@@ -111,11 +131,6 @@ const { data: serviziData } = await useAsyncData('services', () => {
   border-radius: 50%;
   margin-right: 10px;
   vertical-align: middle;
-}
-
-/* Tipologia Card */
-.service-content {
-  text-align: left; /* Titolo a sinistra per questo stile */
 }
 
 .service-title {
