@@ -26,6 +26,7 @@ export default {
       options: {
         hotspot: true,
       },
+      },
     {
       name: 'order',
       title: 'Ordine di apparizione',
