@@ -21,15 +21,10 @@ onMounted(() => {
 
 <template>
   <div>
-    <!-- Header (Visibile sempre) -->
     <MyHeader />
-
-    <!-- 👇 QUI NUXT CAMBIA AUTOMATICAMENTE IL CONTENUTO 👇 -->
-    <!-- Se vai su / carica index.vue -->
-    <!-- Se vai su /prezzi carica prezzi.vue -->
+    <!-- Qui Nuxt carica le pagine (/ = index.vue, /prezzi = prezzi.vue) -->
     <NuxtPage />
-
-    <!-- FOOTER (Visibile sempre) -->
+    
     <footer id="footer" class="site-footer">
       <div class="container">
         <div class="footer-content">
@@ -41,43 +36,12 @@ onMounted(() => {
         </div>
       </div>
     </footer>
-
   </div>
 </template>
 
 <style>
-/* ELIMINAZIONE DEI FONT DI SISTEMA - BLOCCO GLOBALE */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 100 900;
-  src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hi2jW7i9QZiLc.woff2') format('woff2');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Playfair Display';
-  font-style: normal;
-  font-weight: 400;
-  src: url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFkD-vysZiWQgB6lFzZsP.woff2') format('woff2');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Playfair Display';
-  font-style: italic;
-  font-weight: 400;
-  src: url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vysZiWQgA6lFzZsK7kRiUd.woff2') format('woff2');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Playfair Display';
-  font-style: normal;
-  font-weight: 700;
-  src: url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vysZiWQgA6lFzZsA7kRiUd.woff2') format('woff2');
-  font-display: swap;
-}
+/* 1. Font Google (METODO HTML) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
   /* Palette Colori */
@@ -86,11 +50,12 @@ onMounted(() => {
   --color-sand: #f8fafc;
   --color-gold: #c5a059;
 
-  /* VARIABILI FONT (Adesso puntano ai file sopra, non a System) */
+  /* Font (Variabili - Puntano al font Google) */
   --font-serif: 'Playfair Display', serif;      
   --font-sans: 'Inter', sans-serif;            
 }
 
+/* Scorrimento */
 html, body {
   scroll-behavior: smooth;
   margin: 0;
