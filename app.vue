@@ -46,8 +46,38 @@ onMounted(() => {
 </template>
 
 <style>
-/* FONT GLOBALI (Toglieremo Google Fonts se non ti piacciono) */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400..900&family=Inter:wght@100..900&display=swap');
+/* ELIMINAZIONE DEI FONT DI SISTEMA - BLOCCO GLOBALE */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hi2jW7i9QZiLc.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFkD-vysZiWQgB6lFzZsP.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vysZiWQgA6lFzZsK7kRiUd.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vysZiWQgA6lFzZsA7kRiUd.woff2') format('woff2');
+  font-display: swap;
+}
 
 :root {
   /* Palette Colori */
@@ -56,12 +86,11 @@ onMounted(() => {
   --color-sand: #f8fafc;
   --color-gold: #c5a059;
 
-  /* Font (Se vuoi usare Georgia/Arial, cambia qui) */
+  /* VARIABILI FONT (Adesso puntano ai file sopra, non a System) */
   --font-serif: 'Playfair Display', serif;      
   --font-sans: 'Inter', sans-serif;            
 }
 
-/* Scorrimento (Il JS farà il lavoro pesante, ma lasciamo questo come fallback) */
 html, body {
   scroll-behavior: smooth;
   margin: 0;
