@@ -47,7 +47,6 @@ onMounted(() => {
 
 <style>
 /* FONT GLOBALI (Toglieremo Google Fonts se non ti piacciono) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400..900&family=Inter:wght@100..900&display=swap');
 
 :root {
